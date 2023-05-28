@@ -1,8 +1,8 @@
+import webscraping as scraping
 
 def main():
 
-
-    print("TESTE")
+    scraping.httpRequest()
 
 
 #call main function
