@@ -13,6 +13,12 @@ conn = psycopg2.connect(
 # Criar um cursor para executar as operações no banco de dados
 cursor = conn.cursor()
 
+# Definir a consulta SQL para apagar os dados existentes
+delete_query = "DELETE FROM jogos"
+
+# Executar a consulta SQL para apagar os dados existentes
+cursor.execute(delete_query)
+
 # Abrir o arquivo JSON contendo os dados
 with open('jsondata/soccerstreams.json') as file:
     json_data = json.load(file)

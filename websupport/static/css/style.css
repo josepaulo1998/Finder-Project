@@ -1,19 +1,23 @@
 body {
   font-family: Courier;
   font-size: 15px;
+  margin: 0;
+  padding: 0;
+  border: 10px solid #f1f1f1;
 }
 
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
-  width: 90vw;
+  height: calc(100vh - 20px);
+  width: calc(100vw - 20px);
+  padding: 20px;
 }
 
 table {
   border-collapse: collapse;
-  border: 1px solid #ddd; /* Adiciona borda à tabela */
+  border: 1px solid #ddd;
 }
 
 tr:nth-child(odd) {
@@ -78,10 +82,17 @@ tfoot td:first-child {
   border-color: #f1f1f1;
 }
 
-.pagination {
+.pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f1f1f1;
+  padding: 10px;
 }
 
 .pagination li {
@@ -91,4 +102,28 @@ tfoot td:first-child {
 
 .pagination li.active span {
   font-weight: bold;
+}
+
+.atualizar-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.atualizar-button button {
+  font-family: Courier;
+  font-size: 15px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.atualizar-button button:hover {
+  background-color: #0056b3;
 }

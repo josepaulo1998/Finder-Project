@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>database websupport</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="table-container">
+      <div class="database-header">
+        Database: JOGOS
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Nome</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in data %}
+          <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td><a href="{{ row[2] }}">{{ row[2] }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <nav class="pagination-container">
+      <ul class="pagination">
+        {% for page in range(1, total_pages + 1) %}
+        <li {% if page == current_page %}class="active highlighted"{% endif %}>
+          <a href="/?page={{ page }}">{{ page }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+  <div class="atualizar-button">
+    <button id="btnAtualizar" onclick="atualizarDados()">Atualizar</button>
+    <button onclick="gerarJSON()">Gerar JSON</button>
+    <button onclick="inserirJSON()">Inserir JSON</button>
+    <button onclick="apagarDados()">Apagar Dados</button>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script>
+    function apagarDados() {
+        fetch('/apagar-dados')
+            .then(response => response.text())
+            .then(message => {
+                alert(message);  // Exibe uma mensagem com o resultado do apagamento dos dados
+                location.reload();  // Recarrega a página após apagar os dados
+            });
+    }
+</script>
+
+  <script>
+    function gerarJSON() {
+      fetch('/gerar-json')
+        .then(response => response.text())
+        .then(message => {
+          location.reload();;  // Exibe uma mensagem com o resultado da geração do JSON
+          
+        });
+    }
+    </script>
+
+  <script>
+    function inserirJSON() {
+      fetch('/inserir-json')
+        .then(response => response.text())
+        .then(message => {
+          location.reload();;  // Exibe uma mensagem com o resultado da inserção do JSON
+        
+        });
+    }
+  </script>
+  
+  <script>
+    function atualizarDados() {
+      $.ajax({
+        url: "/atualizar",
+        type: "GET",
+        success: function(response) {
+          // Atualizar a tabela com os novos dados
+          var tbody = $("tbody");
+          tbody.empty();
+
+          for (var i = 0; i < response.length; i++) {
+            var row = response[i];
+            var newRow = "<tr><td>" + row[1] + "</td><td>" + row[2] + "</td><td><a href='" + row[3] + "'>" + row[3] + "</a></td></tr>";
+            tbody.append(newRow);
+          }
+
+          location.reload();
+        },
+        error: function() {
+          alert("Erro ao atualizar os dados. Por favor, tente novamente mais tarde.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
