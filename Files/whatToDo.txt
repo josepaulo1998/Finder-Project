@@ -1,0 +1,39 @@
+	!Chose DB!
+	DB: postgreSQL!; mySQL! ; redis!
+	redis: real-time data processing, que é oq nós queremos 
+	Futuro DB: Node.js
+	
+	!Crawling Externo!
+	José: Crawling pela www, usar APIs;
+	      Fornecer links ao rodrigo;
+	
+	!Webscraping!
+	Rodrigo: Pegar em links fornecidos por external crawling:
+	 		( link: https://totalsportek.pro/ )
+		 features DB: link; SSL ; DomainLength, Cert , ... , 1 0;
+		 Na Extração de features do site: boolean, Caracter (e.q T or F)
+						  numbers 0 1 2 3;
+		 A Extração de features é automatica;  
+	
+	!Machine Learning!
+	José/Rodrigo: Aplicar ML (Scikit-Learn/Pandas) [1 || 0]
+	
+	!Crawling Interno!
+	José/Rodrigo: Crawling interno dos links 1;
+		      Retornar a src do link que está a streamar
+	
+	!Web page!
+	Rodrigo:
+		Criar a pagina web
+	
+	!Better Content!
+	Melhorar programa:
+		Melhorar a resolução AI do video
+
+INSTALAR REQUIREMENTS:
+pip freeze > requirements.txt
+Correr Requirements:
+pip install -r requirements.txt
+Start Tor:
+tor.exe -f torrc
+https://community.torproject.org/relay/setup/bridge/windows/
