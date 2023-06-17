@@ -44,7 +44,7 @@ class ExternalCrawling:
     def writeJson(self):
 
         data = {
-            "urls:":self.urls
+            "urls":self.urls
         }
         with open('DuckDuckGo/Urls/commonUrls2.json','w',encoding='utf-8') as file:
 
